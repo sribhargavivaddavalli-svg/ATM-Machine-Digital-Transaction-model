@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ATM System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- MOBILE NUMBER PAGE -->
+<div id="mobilePage" class="page" style="display:block;">
+<h2>Enter Mobile Number</h2>
+<input type="text" id="mobileInput" placeholder="Enter Mobile Number">
+<p id="mobileMsg" class="error"></p>
+<button onclick="sendOTP()">Send OTP</button>
+</div>
+
+<!-- OTP PAGE -->
+<div id="otpPage" class="page">
+<h2>Enter OTP</h2>
+<input type="text" id="otpInput" placeholder="Enter OTP">
+<p id="otpMsg" class="error"></p>
+<button onclick="verifyOTP()">Verify OTP</button>
+</div>
+
+<!-- PIN PAGE -->
+<div id="loginPage" class="page">
+<h2>ATM Login</h2>
+<input type="password" id="pinInput" placeholder="Enter PIN">
+<p id="loginMsg" class="error"></p>
+<button onclick="login()">Login</button>
+</div>
+
+<!-- HOME PAGE -->
+<div id="homePage" class="page">
+<h2 id="welcomeText"></h2>
+<h3>Balance: ₹ <span id="bal"></span></h3>
+<h3>Daily Limit Left: ₹ <span id="limit"></span></h3>
+
+<button onclick="openPage('depositPage')">Deposit</button>
+<button onclick="openPage('withdrawPage')">Withdraw</button>
+<button onclick="openPage('internalTransferPage')">Internal Transfer</button>
+<button onclick="openPage('externalTransferPage')">External Transfer</button>
+<button onclick="openPage('historyPage')">Full History</button>
+<button onclick="openPage('lastFivePage')">Last 5 Transactions</button>
+<button onclick="openPage('pinChangePage')">Change PIN</button>
+<button onclick="openPage('qrPage')">Generate QR</button>
+<button onclick="openPage('pdfPage')">PDF Download</button>
+<button onclick="logout()">Logout</button>
+</div>
+
+<!-- DEPOSIT -->
+<div id="depositPage" class="page">
+<h2>Deposit</h2>
+<input type="number" id="depAmt" placeholder="Enter Amount">
+<button onclick="deposit()">Submit</button>
+<button class="back-btn" onclick="openPage('homePage')">Back</button>
+</div>
+
+<!-- WITHDRAW -->
+<div id="withdrawPage" class="page">
+<h2>Withdraw</h2>
+<input type="number" id="wdAmt" placeholder="Enter Amount">
+<button onclick="withdrawAmt()">Submit</button>
+<button class="back-btn" onclick="openPage('homePage')">Back</button>
+</div>
+
+<!-- INTERNAL TRANSFER -->
+<div id="internalTransferPage" class="page">
+<h2>Internal Transfer</h2>
+<input type="number" id="intAmt" placeholder="Enter Amount">
+<input type="text" id="intPin" placeholder="Receiver PIN">
+<button onclick="internalTransfer()">Transfer</button>
+<button class="back-btn" onclick="openPage('homePage')">Back</button>
+</div>
+
+<!-- EXTERNAL TRANSFER -->
+<div id="externalTransferPage" class="page">
+<h2>External Transfer</h2>
+<input type="number" id="extAmt" placeholder="Enter Amount">
+<input type="text" id="extBank" placeholder="Bank Name">
+<button onclick="externalTransfer()">Send</button>
+<button class="back-btn" onclick="openPage('homePage')">Back</button>
+</div>
+
+<!-- FULL HISTORY -->
+<div id="historyPage" class="page">
+<h2>Full History</h2>
+<div id="historyList"></div>
+<button class="back-btn" onclick="openPage('homePage')">Back</button>
+</div>
+
+<!-- LAST 5 -->
+<div id="lastFivePage" class="page">
+<h2>Last 5</h2>
+<div id="lastFiveList"></div>
+<button class="back-btn" onclick="openPage('homePage')">Back</button>
+</div>
+
+<!-- CHANGE PIN -->
+<div id="pinChangePage" class="page">
+<h2>Change PIN</h2>
+<input type="password" id="newPIN" placeholder="Enter new PIN">
+<button onclick="changePIN()">Change</button>
+<button class="back-btn" onclick="openPage('homePage')">Back</button>
+</div>
+
+<!-- QR -->
+<div id="qrPage" class="page">
+<h2>Your QR Code</h2>
+<div id="qrBox"></div>
+<button class="back-btn" onclick="openPage('homePage')">Back</button>
+</div>
+
+<!-- PDF PAGE -->
+<div id="pdfPage" class="page">
+<h2>Download Account PDF</h2>
+<button onclick="downloadPDF()">Download PDF</button>
+<button class="back-btn" onclick="openPage('homePage')">Back</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
